@@ -54,12 +54,12 @@ log_info "Installing Nodejs, GCC, Make and Git"
 # Prepare MongoDB repository
 log_info "Preparing the MongoDB repository"
 log_warning "Error checking disabled during this step. If there are any issues begin your troubleshooting here."
-	sudo echo "[mongodb-upstream]" > /etc/yum.repos.d/mongodb-org-5.0.repo
-	sudo echo "name=MongoDB Upstream Repository >> /etc/yum.repos.d/mongodb-org-5.0.repo" >> /etc/yum.repos.d/mongodb-org-5.0.repo
-	sudo echo "baseurl=https://repo.mongodb.org/yum/redhat/8Server/mongodb-org/5.0/x86_64/" >> /etc/yum.repos.d/mongodb-org-5.0.repo
-	sudo echo "gpgcheck=1" >> /etc/yum.repos.d/mongodb-org-5.0.repo
-	sudo echo "enabled=1" >> /etc/yum.repos.d/mongodb-org-5.0.repo
-	sudo echo "gpgkey=https://www.mongodb.org/static/pgp/server-5.0.asc" >> gpgkey=https://www.mongodb.org/static/pgp/server-5.0.asc
+	echo '[mongodb-upstream]' | sudo tee -a  /etc/yum.repos.d/mongodb-org-5.0.repo
+	echo "name=MongoDB Upstream Repository >> /etc/yum.repos.d/mongodb-org-5.0.repo" | sudo tee -a /etc/yum.repos.d/mongodb-org-5.0.repo
+	echo "baseurl=https://repo.mongodb.org/yum/redhat/8Server/mongodb-org/5.0/x86_64/" | sudo tee -a  /etc/yum.repos.d/mongodb-org-5.0.repo
+	echo "gpgcheck=1" | sudo tee -a /etc/yum.repos.d/mongodb-org-5.0.repo
+	echo "enabled=1" | sudo tee -a /etc/yum.repos.d/mongodb-org-5.0.repo
+	echo "gpgkey=https://www.mongodb.org/static/pgp/server-5.0.asc" | sudo tee -a gpgkey=https://www.mongodb.org/static/pgp/server-5.0.asc
 log_warning "Repository added and error checking is now re-enabled. If there are any issues please manually check this step.
 
 # Install and enable MongoDB
