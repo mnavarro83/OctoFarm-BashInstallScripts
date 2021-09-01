@@ -25,8 +25,10 @@ function log_error() {
 	echo -e "[$COLOR_RED"FAILED"$COLOR_DEFAULT] $1"
 }
 
-log_info "OctoFarm Installer Script for Red Hat and Alma/Rocky and other variants (does not work on Fedora!)"
+log_info "OctoFarm Installer Script for Red Hat and Alma/Rocky and other variants (does not work on Fedora!) This script should only be executed by a system user with sudo privileges. Do not run as root"
 read -r -s -p $'Press enter to continue... ctrl+c to cancel'
+echo
+echo
 # Update repositories and packages
 log_info "Updating repositories and packages, please be patient"
 
@@ -52,12 +54,12 @@ log_info "Installing Nodejs, GCC, Make and Git"
 # Prepare MongoDB repository
 log_info "Preparing the MongoDB repository"
 log_warning "Error checking disabled during this step. If there are any issues begin your troubleshooting here."
-	echo "[mongodb-upstream]" > /etc/yum.repos.d/mongodb-org-5.0.repo
-	echo "name=MongoDB Upstream Repository >> /etc/yum.repos.d/mongodb-org-5.0.repo" >> /etc/yum.repos.d/mongodb-org-5.0.repo
-	echo "baseurl=https://repo.mongodb.org/yum/redhat/8Server/mongodb-org/5.0/x86_64/" >> /etc/yum.repos.d/mongodb-org-5.0.repo
-	echo "gpgcheck=1" >> /etc/yum.repos.d/mongodb-org-5.0.repo
-	echo "enabled=1" >> /etc/yum.repos.d/mongodb-org-5.0.repo
-	echo "gpgkey=https://www.mongodb.org/static/pgp/server-5.0.asc" >> gpgkey=https://www.mongodb.org/static/pgp/server-5.0.asc
+	sudo echo "[mongodb-upstream]" > /etc/yum.repos.d/mongodb-org-5.0.repo
+	sudo echo "name=MongoDB Upstream Repository >> /etc/yum.repos.d/mongodb-org-5.0.repo" >> /etc/yum.repos.d/mongodb-org-5.0.repo
+	sudo echo "baseurl=https://repo.mongodb.org/yum/redhat/8Server/mongodb-org/5.0/x86_64/" >> /etc/yum.repos.d/mongodb-org-5.0.repo
+	sudo echo "gpgcheck=1" >> /etc/yum.repos.d/mongodb-org-5.0.repo
+	sudo echo "enabled=1" >> /etc/yum.repos.d/mongodb-org-5.0.repo
+	sudo echo "gpgkey=https://www.mongodb.org/static/pgp/server-5.0.asc" >> gpgkey=https://www.mongodb.org/static/pgp/server-5.0.asc
 log_warning "Repository added and error checking is now re-enabled. If there are any issues please manually check this step.
 
 # Install and enable MongoDB
