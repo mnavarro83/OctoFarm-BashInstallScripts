@@ -64,7 +64,7 @@ log_warning "Repository added and error checking is now re-enabled. If there are
 
 # Install and enable MongoDB
 log_info "Installing MongoDB, please be patient"
-	sudo dnf install mongodb-org -yq
+	sudo dnf install mongodb-org
 		if [ $? -ne 0 ]; then
                 	log_error "Failed to install MongoDB. Please investigate manually and retry" &&
                 exit 1
