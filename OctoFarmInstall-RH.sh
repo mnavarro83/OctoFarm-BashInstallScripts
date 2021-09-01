@@ -92,7 +92,7 @@ log_info "Installing pm2"
             	fi
 # Open port 4000
 log_info "Opening port 4000 on FirewallD"
-	sudo firewall-cmd --add-port=4000/tcp %% sudo firewall-cmd --add-port=4000/udp && sudo firewall-cmd --add-port=4000/udp --permanent && sudo firewall-cmd --add-port=4000/tcp --permanent
+	sudo firewall-cmd --add-port=4000/tcp && sudo firewall-cmd --add-port=4000/udp && sudo firewall-cmd --add-port=4000/udp --permanent && sudo firewall-cmd --add-port=4000/tcp --permanent
 		if [ $? -ne 0 ]; then
                 	log_error "Failed to open up the firewall. Please investigate manually and retry" &&
                 	exit 1
