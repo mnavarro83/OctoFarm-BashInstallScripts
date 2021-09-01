@@ -25,7 +25,7 @@ function log_error() {
 	echo -e "[$COLOR_RED"FAILED"$COLOR_DEFAULT] $1"
 }
 
-log_info "OctoFarm Installer Script for Red Hat and Alma/Rocky and other variants (does not work on Fedora!)
+log_info "OctoFarm Installer Script for Red Hat and Alma/Rocky and other variants (does not work on Fedora!)"
 read -r -s -p $'Press enter to continue... ctrl+c to cancel'
 # Update repositories and packages
 log_info "Updating repositories and packages, please be patient"
