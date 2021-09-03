@@ -101,15 +101,6 @@ log_info "Installing pm2"
             	else
                 	log_success "Installation of pm2 successful!."
             	fi
-# Open port 4000
-log_info "Opening port 4000 on FirewallD"
-	sudo firewall-cmd --add-port=4000/tcp && sudo firewall-cmd --add-port=4000/udp && sudo firewall-cmd --add-port=4000/udp --permanent && sudo firewall-cmd --add-port=4000/tcp --permanent
-		if [ $? -ne 0 ]; then
-                	log_error "Failed to open up the firewall. Please investigate manually and retry" &&
-                	exit 1
-            	else
-                	log_success "Fireall changes succeeded!."
-            	fi
 
 # Clone OctoFarm
 log_info "Cloning OctoFarm"
@@ -141,4 +132,8 @@ log_info "Making OctoFarm persistent"
            	fi
 echo
 echo
-log_success "OctoFarm is now installed. Please navigate to $IPADDR:4000 to create a user and finalize setup"
+log_success "OctoFarm is now installed. You will need to open up port 4000 on the firewall (if enabled). Please navigate to $IPADDR:4000 to create a user and finalize setup once the port is open"
+echo
+echo
+log_success "Have a day!"
+exit0
