@@ -35,7 +35,7 @@ echo
 # Update repositories and packages
 log_info "Updating repositories and packages, please be patient"
 
-	sudo zypper dup -yq
+	sudo zypper dup -y
 	    if [ $? -ne 0 ]; then
         	log_error "Failed to update repositories and packages. Please investigate manually and retry" &&
             	exit 1
@@ -45,7 +45,7 @@ log_info "Updating repositories and packages, please be patient"
 
 # Install dependencies
 log_info "Installing Nodejs, GCC, Make and Git"
-	sudo zypper install nodejs gcc make git -y
+	sudo zypper install -y nodejs gcc make git ca-certificates{,-cacert,-mozilla}
 		if [ $? -ne 0 ]; then
             log_error "Installation failed. Please investigate manually and retry" &&
                 exit 1
@@ -75,7 +75,7 @@ log_info "Adding repository"
 
 # Install and enable MongoDB
 log_info "Installing MongoDB, please be patient"
-	sudo zypper install mongodb-org -yq
+	sudo zypper install -y mongodb-org
 		if [ $? -ne 0 ]; then
             log_error "Failed to install MongoDB. Please investigate manually and retry" &&
                 exit 1
