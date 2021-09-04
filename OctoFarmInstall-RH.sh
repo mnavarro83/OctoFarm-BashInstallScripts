@@ -1,5 +1,8 @@
 #!/bin/bash
+
+#Variables
 VERSION=0.1
+IPADDR="$(hostname -I | awk '{print $1}')"
 
 # Bash Colors
 # https://misc.flogisoft.com/bash/tip_colors_and_formatting
@@ -33,7 +36,7 @@ echo
 log_info "Updating repositories and packages, please be patient"
 
 	sudo dnf update -yq
-	    if [ $? -ne 0 ]; then
+        if [ $? -ne 0 ]; then
         	log_error "Failed to update repositories and packages. Please investigate manually and retry" &&
             	exit 1
     	    else
@@ -44,11 +47,11 @@ log_info "Updating repositories and packages, please be patient"
 log_info "Installing Nodejs, GCC, Make and Git"
 	sudo dnf install nodejs gcc make git -y
 		if [ $? -ne 0 ]; then
-                	log_error "Installation failed. Please investigate manually and retry" &&
-                		exit 1
-            	else
-                	log_success "Installation successful!."
-            	fi
+            log_error "Installation failed. Please investigate manually and retry" &&
+                exit 1
+        else
+            log_success "Installation successful!."
+        fi
 
 
 # Prepare MongoDB repository
@@ -66,65 +69,75 @@ log_warning "Repository added and error checking is now re-enabled. If there are
 log_info "Installing MongoDB, please be patient"
 	sudo dnf install mongodb-org -yq
 		if [ $? -ne 0 ]; then
-                	log_error "Failed to install MongoDB. Please investigate manually and retry" &&
+            log_error "Failed to install MongoDB. Please investigate manually and retry" &&
                 exit 1
-            	else
-                	log_success "MongoDB successfully installed."
-            	fi
+        else
+            log_success "MongoDB successfully installed."
+        fi
 
 log_info "Starting and making MongoDB persist reboots"
 	sudo systemctl enable mongod --now
 		if [ $? -ne 0 ]; then
-                	log_error "Something appears to be wrong with the MongoDB system unit file. Please investigate manually and retry" &&
-                	exit 1
-            	else
-                	log_success "Success!"
-            	fi
+            log_error "Something appears to be wrong with the MongoDB system unit file. Please investigate manually and retry" &&
+                exit 1
+        else
+            log_success "Success!"
+        fi
 
 # Install pm2
 log_info "Installing pm2"
 	sudo npm install pm2 -g
 		if [ $? -ne 0 ]; then
-                	log_error "Failed to install pm2. Please investigate manually and retry" &&
-                	exit 1
-            	else
-                	log_success "Installation of pm2 successful!."
-            	fi
+            log_error "Failed to install pm2. Please investigate manually and retry" &&
+                exit 1
+        else
+            log_success "Installation of pm2 successful!."
+        fi
+        
 # Open port 4000
 log_info "Opening port 4000 on FirewallD"
 	sudo firewall-cmd --add-port=4000/tcp && sudo firewall-cmd --add-port=4000/udp && sudo firewall-cmd --add-port=4000/udp --permanent && sudo firewall-cmd --add-port=4000/tcp --permanent
 		if [ $? -ne 0 ]; then
-                	log_error "Failed to open up the firewall. Please investigate manually and retry" &&
-                	exit 1
-            	else
-                	log_success "Fireall changes succeeded!."
-            	fi
+            log_error "Failed to open up the firewall. Please investigate manually and retry" &&
+                exit 1
+        else
+            log_success "Firewall changes succeeded!."
+        fi
 
 # Clone OctoFarm
 log_info "Cloning OctoFarm"
 	git clone --depth 1 https://github.com/OctoFarm/OctoFarm.git
 		if [ $? -ne 0 ]; then
-                	log_error "Unable to clone. Please investigate manually and retry" &&
-                	exit 1
-            	else
-                	log_success "Clone Succeeded!."
-            	fi
+            log_error "Unable to clone. Please investigate manually and retry" &&
+                exit 1
+        else
+            log_success "Clone Succeeded!."
+        fi
+        
 # Install OctoFarm
 log_info "Installing and starting up OctoFarm"
-
-	cd OctoFarm/ && npm start
+    cd OctoFarm/ && npm start
 		if [ $? -ne 0 ]; then
-                	log_error "Did not start successfully. Please investigate manually and retry" &&
-                	exit 1
-            	else
-                	log_success "Startup Succeeded!."
-            	fi
+            log_error "Did not start successfully. Please investigate manually and retry" &&
+                exit 1
+        else
+            log_success "Startup Succeeded!."
+        fi
+        
 # Make OctoFarm persistent
 log_info "Making OctoFarm persistent"
 	pm2 startup | grep -v PM2 | bash && pm2 save
 		if [ $? -ne 0 ]; then
-                	log_error "Something went wrong. Please investigate manually and retry" &&
-                	exit 1
-            	else
-                	log_success "Updates Succeeded!."
-           	fi
+            log_error "Something went wrong. Please investigate manually and retry" &&
+                exit 1
+        else
+            log_success "Updates Succeeded!."
+        fi
+
+echo
+echo
+log_success "OctoFarm is now installed. You will need to open up port 4000 on the firewall (if enabled). Please navigate to '$IPADDR:4000' to create a user and finalize setup once the port is open"
+echo
+echo
+log_success "Have a day!"
+exit 0
