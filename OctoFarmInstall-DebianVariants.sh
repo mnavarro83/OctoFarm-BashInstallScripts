@@ -52,8 +52,8 @@ log_info "Updating repositories and packages, please be patient"
         fi
 
 # Install dependencies
-log_info "Installing Nodejs, GCC, Make and Git and Gnupg"
-	sudo apt install -y nodejs gcc make git gnupg
+log_info "Installing Nodejs, GCC, Make, NPM and Git and Gnupg"
+	sudo apt -y install nodejs gcc make git npm gnupg
 		if [ $? -ne 0 ]; then
             log_error "Installation failed. Please investigate manually and retry" &&
                 exit 1
@@ -84,7 +84,7 @@ log_info "Adding repository"
 # Install and enable MongoDB
 sudo apt update
 log_info "Installing MongoDB, please be patient"
-	sudo apt install -y mongodb-org
+	sudo apt -y install mongodb-org
 		if [ $? -ne 0 ]; then
             log_error "Failed to install MongoDB. Please investigate manually and retry" &&
                 exit 1
