@@ -28,7 +28,7 @@ function log_error() {
 	echo -e "[$COLOR_RED"FAILED"$COLOR_DEFAULT] $1"
 }
 
-log_info "OctoFarm Installer Script for Debian/Canonical variants. Tested on Debian 10 and Ubuntu 21.04. This script should only be executed by a system user with sudo privileges. Do not run as root"
+log_info "OctoFarm Installer Script for Debian/Canonical variants. Tested on Debian 10 and 11 and on Ubuntu 21.04. This script should only be executed by a system user with sudo privileges. Do not run as root"
 read -r -s -p $'Press enter to continue... ctrl+c to cancel'
 echo
 echo
