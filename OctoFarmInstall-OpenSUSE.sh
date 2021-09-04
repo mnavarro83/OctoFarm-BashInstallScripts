@@ -132,7 +132,7 @@ log_info "Making OctoFarm persistent"
            	fi
 echo
 echo
-log_success "OctoFarm is now installed. You will need to open up port 4000 on the firewall (if enabled). Please navigate to $IPADDR:4000 to create a user and finalize setup once the port is open"
+log_success "OctoFarm is now installed. You will need to open up port 4000 on the firewall (if enabled). Please navigate to '$IPADDR:4000' to create a user and finalize setup once the port is open"
 echo
 echo
 log_success "Have a day!"
