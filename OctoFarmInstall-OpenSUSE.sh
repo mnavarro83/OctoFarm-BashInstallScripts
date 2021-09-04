@@ -136,4 +136,4 @@ log_success "OctoFarm is now installed. You will need to open up port 4000 on th
 echo
 echo
 log_success "Have a day!"
-exit0
+exit 0
