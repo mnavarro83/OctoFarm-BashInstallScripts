@@ -43,7 +43,7 @@ log_info "Updating repositories and packages, please be patient"
         	log_success "List Updates Succeeded!."
         fi
         
-	sudo apt upgrade
+	sudo apt upgrade -y
 	    if [ $? -ne 0 ]; then
         	log_error "Failed to update packages. Please investigate manually and retry" &&
             	exit 1
@@ -52,6 +52,14 @@ log_info "Updating repositories and packages, please be patient"
         fi
 
 # Install dependencies
+log_info "Setting up NodeJS LTS v14"
+    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+        if [ $? -ne 0 ]; then
+            log_error "NodeJS Installation failed. Please investigate manually and retry" &&
+                exit 1
+        else
+            log_success "NodeJS Installation successful!."
+        fi
 log_info "Installing Nodejs, GCC, Make, NPM and Git and Gnupg"
 	sudo apt -y install nodejs gcc make git npm gnupg
 		if [ $? -ne 0 ]; then
