@@ -2,7 +2,7 @@
 
 #Variables
 VERSION=0.1
-IPADDR="$(hostname -I)"
+IPADDR="$(hostname -I | awk '{print $1}')"
 
 # Bash Colors
 # https://misc.flogisoft.com/bash/tip_colors_and_formatting
