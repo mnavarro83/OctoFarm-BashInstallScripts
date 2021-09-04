@@ -60,8 +60,8 @@ log_info "Setting up NodeJS LTS v14"
         else
             log_success "NodeJS Installation successful!."
         fi
-log_info "Installing Nodejs, GCC, Make, NPM and Git and Gnupg"
-	sudo apt -y install nodejs gcc make git npm gnupg
+log_info "Installing Nodejs, GCC, Make, Git and Gnupg"
+	sudo apt -y install nodejs gcc make git gnupg
 		if [ $? -ne 0 ]; then
             log_error "Installation failed. Please investigate manually and retry" &&
                 exit 1
