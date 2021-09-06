@@ -22,4 +22,4 @@ cd ~ && git clone https://github.com/mnavarro83/OctoFarm-BashInstallScripts.git 
 cd ~ && git clone https://github.com/mnavarro83/OctoFarm-BashInstallScripts.git && bash ~/OctoFarm-BashInstallScripts/OctoFarmInstall-OpenSUSE.sh
 ```
 
-# Need help? Run into an issue? Have a suggestion? Please open an issue and I'll get to it as soon as I can.
+# Need help? Run into an issue? Have a suggestion? Please open an issue and we will get to it as soon as we can.
