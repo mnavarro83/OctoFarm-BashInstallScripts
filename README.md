@@ -22,4 +22,6 @@ cd ~ && git clone https://github.com/mnavarro83/OctoFarm-BashInstallScripts.git 
 cd ~ && git clone https://github.com/mnavarro83/OctoFarm-BashInstallScripts.git && sudo bash ~/OctoFarm-BashInstallScripts/OctoFarmInstall-OpenSUSE.sh
 ```
 
-# Need help? Run into an issue? Have a suggestion? Please open an issue and we will get to it as soon as we can.
+# Other
+
+Need help? Run into an issue? Have a suggestion? Please open an issue and we will get to it as soon as we can.
