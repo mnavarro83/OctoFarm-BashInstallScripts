@@ -113,40 +113,42 @@ log_info "Starting and making MongoDB persist reboots"
 log_info "Installing pm2"
 	sudo npm install pm2 -g
 		if [ $? -ne 0 ]; then
-                	log_error "Failed to install pm2. Please investigate manually and retry" &&
-                	exit 1
-            	else
-                	log_success "Installation of pm2 successful!."
-            	fi
+            log_error "Failed to install pm2. Please investigate manually and retry" &&
+                exit 1
+        else
+            log_success "Installation of pm2 successful!."
+        fi
 
 # Clone OctoFarm
 log_info "Cloning OctoFarm"
 	git clone --depth 1 https://github.com/OctoFarm/OctoFarm.git
 		if [ $? -ne 0 ]; then
-                	log_error "Unable to clone. Please investigate manually and retry" &&
-                	exit 1
-            	else
-                	log_success "Clone Succeeded!."
-            	fi
+            log_error "Unable to clone. Please investigate manually and retry" &&
+                exit 1
+        else
+            log_success "Clone Succeeded!."
+        fi
+
 # Install OctoFarm
 log_info "Installing and starting up OctoFarm"
 
 	cd OctoFarm/ && npm start
 		if [ $? -ne 0 ]; then
-                	log_error "Did not start successfully. Please investigate manually and retry" &&
-                	exit 1
-            	else
-                	log_success "Startup Succeeded!."
-            	fi
+            log_error "Did not start successfully. Please investigate manually and retry" &&
+                exit 1
+        else
+            log_success "Startup Succeeded!."
+        fi
+        
 # Make OctoFarm persistent
 log_info "Making OctoFarm persistent"
 	pm2 startup | grep -v PM2 | bash && pm2 save
 		if [ $? -ne 0 ]; then
-                	log_error "Something went wrong. Please investigate manually and retry" &&
-                	exit 1
-            	else
-                	log_success "Updates Succeeded!."
-           	fi
+            log_error "Something went wrong. Please investigate manually and retry" &&
+                exit 1
+        else
+            log_success "Updates Succeeded!."
+        fi
 echo
 echo
 log_success "OctoFarm is now installed. You will need to open up port 4000 on the firewall (if enabled). Please navigate to '$IPADDR:4000' to create a user and finalize setup once the port is open"

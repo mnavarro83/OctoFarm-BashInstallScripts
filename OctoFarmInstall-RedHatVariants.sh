@@ -28,7 +28,7 @@ function log_error() {
 	echo -e "[$COLOR_RED"FAILED"$COLOR_DEFAULT] $1"
 }
 
-log_info "OctoFarm Installer Script for Red Hat and Alma/Rocky and other variants (does not work on Fedora!) This script should only be executed by a system user with sudo privileges. Do not run as root"
+log_info "OctoFarm Installer Script for Alma/Rocky and other Redhat variants (does not work on Fedora as of yet due to MongoDB dependecies) This script should only be executed by a system user with sudo privileges. Do not run as root"
 read -r -s -p $'Press enter to continue... ctrl+c to cancel'
 echo
 echo
@@ -39,9 +39,9 @@ log_info "Updating repositories and packages, please be patient"
         if [ $? -ne 0 ]; then
         	log_error "Failed to update repositories and packages. Please investigate manually and retry" &&
             	exit 1
-    	    else
+        else
         	log_success "Updates Succeeded!."
-    	    fi
+        fi
 
 # Install dependencies
 log_info "Installing Nodejs, GCC, Make and Git"
@@ -98,8 +98,7 @@ log_info "Installing pm2"
 log_info "Opening port 4000 on FirewallD"
 	sudo firewall-cmd --add-port=4000/tcp && sudo firewall-cmd --add-port=4000/udp && sudo firewall-cmd --add-port=4000/udp --permanent && sudo firewall-cmd --add-port=4000/tcp --permanent
 		if [ $? -ne 0 ]; then
-            log_error "Failed to open up the firewall. Please investigate manually and retry" &&
-                exit 1
+            log_error "Failed to open up the firewall. Please investigate manually. Proceeding with install"
         else
             log_success "Firewall changes succeeded!."
         fi
@@ -136,7 +135,7 @@ log_info "Making OctoFarm persistent"
 
 echo
 echo
-log_success "OctoFarm is now installed. You will need to open up port 4000 on the firewall (if enabled). Please navigate to '$IPADDR:4000' to create a user and finalize setup once the port is open"
+log_success "OctoFarm is now installed. You will need to open up port 4000 on the firewall if that step failed and if the software firewall is enabled. Please navigate to '$IPADDR:4000' to create a user and finalize setup once the port is open"
 echo
 echo
 log_success "Have a day!"
