@@ -53,4 +53,4 @@ cd ~ && git clone https://github.com/mnavarro83/OctoFarm-BashInstallScripts.git 
 
 # Other
 
-Need help? Run into an issue? Have a suggestion? Please open an issue and we will get to it as soon as we can.
+Need help? Run into an problem? Have a suggestion? Please open an issue and we will get to it as soon as we can.
