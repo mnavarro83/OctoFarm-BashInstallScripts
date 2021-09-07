@@ -12,7 +12,10 @@ Bash scripts for installing OctoFarm and it's assorted dependencies.
 cd ~ && git clone https://github.com/mnavarro83/OctoFarm-BashInstallScripts.git && sudo bash ~/OctoFarm-BashInstallScripts/OctoFarmInstall-DebianVariants.sh
 ```
 
-## Rocky, Alma and other Redhat Variants. Does not work on Fedora the last time I checked due to issues with MongoDB repo dependencies (6/Sept/21).
+## Rocky, Alma and other Redhat Variants. 
+
+Does not work on Fedora the last time I checked due to issues with MongoDB repo dependencies (6/Sept/21).
+
 ```bash
 cd ~ && git clone https://github.com/mnavarro83/OctoFarm-BashInstallScripts.git && sudo bash ~/OctoFarm-BashInstallScripts/OctoFarmInstall-RedHatVariants.sh
 ```
