@@ -1,5 +1,6 @@
 # OctoFarm-BashInstallScripts
 Bash scripts for installing OctoFarm and it's assorted dependencies.
+https://github.com/OctoFarm/OctoFarm
 
 # Requirements
   - Non-root user with sudo privileges
